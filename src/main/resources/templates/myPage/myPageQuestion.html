@@ -61,8 +61,8 @@
                         </thead>
                         <tbody>
                             <tr th:each="list:${list}">
-                                <td th:text="${list.inquiryNumber}"></td>
-                                <td th:text="${list.inquiryTitle}"></td>
+                                <td th:text="${list.inquiryNumber}">문의 넘버</td>
+                                <td th:text="${list.inquiryTitle}" th:href="@{/inquiry/inquiryDetail(inquiryNumber=${list.inquiryNumber})}" style="cursor: pointer">내용</td>
                                 <td th:text="${#dates.format(list.inquiryDate, 'yyyy-MM-dd')}"></td>
                                 <td th:text="${list.inquiryStatus} == 0 ? 진행중 : 완료"></td>
                             </tr>
@@ -129,5 +129,11 @@
     function goQuestionWrite() {
         location.href = "/inquiry/inquiryWrite";
     }
+
+    $(".questions_table").find("tr td:nth-child(2)").on("click",function () {
+        let href = $(this).attr("href");
+        location.href = href;
+    })
+
 </script>
 </html>

@@ -26,6 +26,8 @@ init();
 
 //비밀번호 정규식
 function validNewPw(obj){
+    let newPw = document.querySelector('.new').value;
+
     if(validNewPwCheck(obj)==false){
         $('#result_NewPw').text("최소8자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자가 포함 되어야 합니다.");
         $('#result_NewPw').css('color', 'red');
@@ -49,7 +51,6 @@ function sameNewPw(obj) {
     let newPw = document.querySelector('.new').value;
     let rePw = document.querySelector('.rePw').value;
     let result_reNewPw = document.getElementById('result_reNewPw');
-
 
     if(newPw != rePw){
         result_reNewPw.innerText = '비밀번호가 일치하지 않습니다.';

@@ -125,7 +125,7 @@ public class IllustController {
     @PostMapping("/uploadAjaxAction")
     @ResponseBody
     public List<IllustVO> uploadAjaxPost(MultipartFile[] uploadFile) {
-        String uploadFolder = "/home/ubuntu/stelling/upload/";
+        String uploadFolder = "C:/stelling/upload/";
         List<IllustVO> fileList = new ArrayList<>();
 
         UUID uuid = UUID.randomUUID();
@@ -165,7 +165,7 @@ public class IllustController {
     @GetMapping("/illustImg")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException{
-        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/stelling/upload/" + fileName));
+        return FileCopyUtils.copyToByteArray(new File("C:/stelling/upload/" + fileName));
 
     }
 //    ------------------------------------

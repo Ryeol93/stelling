@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -34,6 +35,8 @@ public class MyPageController {
     private final InquiryService inquiryService;
     private final NovelService novelService;
     private final NovelRepository novelRepository;
+    private final UserService userService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     //프로필수정
@@ -107,9 +110,10 @@ public class MyPageController {
     public RedirectView pwChangeForm(HttpServletRequest request, String userNewPw) {
         HttpSession session = request.getSession();
         Long userNumber = (Long) session.getAttribute("userNumber");
-        UserVO uservo = userRepository.findById(userNumber).get();
-        uservo.setUserPw(userNewPw);
-        userRepository.save(uservo);
+
+        UserVO userVO = userService.get(userNumber);
+        userVO.setUserPw(userNewPw);
+        userRepository.save(userVO);
         return new RedirectView("myPage/myPageEditProfile/");
     }
 

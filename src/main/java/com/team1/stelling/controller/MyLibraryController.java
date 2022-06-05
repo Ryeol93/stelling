@@ -72,6 +72,7 @@ public class MyLibraryController {
         model.addAttribute("userNumber", userNumber);
         model.addAttribute("userVO", userVO);
         return "cash/coinShop";
+
     }
 
     //결제 내역 등록
@@ -80,7 +81,6 @@ public class MyLibraryController {
         payService.register(payVO);
         return "cash/coinShop";
     }
-
     //결제 리스트(마이페이지)
     @GetMapping("/payList")
     public String payList(Paging paging, Model model, HttpServletRequest request){
